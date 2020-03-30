@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Futbolinea</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Futbolinea</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Configuración</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="menu_user">Perfil</string>
+    <string name="menu_history">Historial</string>
+    <string name="menu_proxmatch">Próximo</string>
+    <string name="button_logout">Cerrar Sesión</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="title_activity_registration">Registro</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Registrar</string>
+    <string name="action_sign_in_short">Registrarse</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="reg_title">"Registro"</string>
+    <string name="reg_date">"Fecha de Nacimiento"</string>
+    <string name="prompt_repeatPass">Repetir Contraseña</string>
+    <string name="prompt_username">Nombre Completo</string>
+    <string name="title_activity_login">Iniciar Sesión</string>
+    <string name="prompt_newPassword">Ingrese Contraseña</string>
+    <string name="prompt_newEmail">Ingrese EMail</string>
+    <string name="action_login">Iniciar</string>
+    <string name="action_signin">Registrarse</string>
+    <string name="signed_out">Usuario no existente o clave incorrecta</string>
+    <string name="emailpassword_status_fmt">Usuario logueado</string>
+    <string name="firebase_status_fmt">Encontrado en Firebase</string>
+    <string name="title_activity_signin">Sign in</string>
+    <string name="main_button_groups">Grupos</string>
+    <string name="main_button_newMatch">Crear Partido</string>
+    <string name="main_buttons_logout">Cerrar Sesión</string>
+</resources>

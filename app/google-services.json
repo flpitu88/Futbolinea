@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "189609334977",
+    "firebase_url": "https://futbolinea.firebaseio.com",
+    "project_id": "futbolinea",
+    "storage_bucket": "futbolinea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189609334977:android:dc84344a9a90f5e5041c40",
+        "android_client_info": {
+          "package_name": "com.flpitu88.futbolinea"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189609334977-9cgurpu5sd90hteka1htoktelstk5b0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVrqTVxBPu6s7xCF6aDt_ZEqyWr_hS6EA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189609334977-9cgurpu5sd90hteka1htoktelstk5b0n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

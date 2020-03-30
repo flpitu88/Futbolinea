@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <Button
+        android:id="@+id/botonGrupos"
+        android:layout_width="161dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="@android:color/secondary_text_dark_nodisable"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/main_button_groups" />
+
+    <Button
+        android:id="@+id/botonCrearPartido"
+        android:layout_width="154dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="30dp"
+        android:text="@string/main_button_newMatch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botonSalir"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/design_default_color_error"
+        android:text="@string/main_buttons_logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
