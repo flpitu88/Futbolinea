@@ -4,26 +4,35 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flpitu88.futbolinea.model.Jugador;
+import com.flpitu88.futbolinea.ui.dialog.DatePickerFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -31,7 +40,14 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 public class PerfilActivity extends AppCompatActivity {
+
+    private static final String TAG = "PerfilActivity";
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private FirebaseAuth auth;
@@ -39,10 +55,15 @@ public class PerfilActivity extends AppCompatActivity {
     private DatabaseReference databaseRef;
     private Button buttonGuardar;
     private Button elegirFoto;
-    private EditText pathImagen;
+    private EditText nombre;
+    private EditText apellido;
+    private EditText apodo;
+    private EditText celular;
     private Uri pathImagenPerfil;
     private ImageView imagenPerfil;
     private ProgressBar mProgressBar;
+    private EditText etPlannedDate;
+    private FirebaseUser user;
 
     private StorageTask mUploadTask;
 
@@ -51,23 +72,72 @@ public class PerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
         auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+        user = auth.getCurrentUser();
         TextView correo = findViewById(R.id.correo);
         correo.setText(user.getEmail());
 
         mStorageRef = FirebaseStorage.getInstance().getReference("imagenes_perfil");
-        databaseRef = FirebaseDatabase.getInstance().getReference("imagenes_perfil");
+        databaseRef = FirebaseDatabase.getInstance().getReference("usuarios");
 
         buttonGuardar = findViewById(R.id.guardarPerfil);
         elegirFoto = findViewById(R.id.botonElegirPath);
-        pathImagen = findViewById(R.id.pathArchivo);
         imagenPerfil = findViewById(R.id.imagen_perfil);
         mProgressBar = findViewById(R.id.progressBar);
+        nombre = findViewById(R.id.nombre);
+        apellido = findViewById(R.id.apellido);
+        apodo = findViewById(R.id.apodo);
+        celular = findViewById(R.id.celular);
+        etPlannedDate = (EditText) findViewById(R.id.etPlannedDate);
 
         elegirFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFileChooser();
+            }
+        });
+
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String nombreDB = dataSnapshot.child(user.getUid()).child("nombre").getValue() != null ? dataSnapshot.child(user.getUid()).child("nombre").getValue().toString() : "";
+                String apellidoDB = dataSnapshot.child(user.getUid()).child("apellido").getValue() != null ? dataSnapshot.child(user.getUid()).child("apellido").getValue().toString() : "";
+                String apodoDB = dataSnapshot.child(user.getUid()).child("apodo").getValue() != null ? dataSnapshot.child(user.getUid()).child("apodo").getValue().toString() : "";
+                String celularDB = dataSnapshot.child(user.getUid()).child("celular").getValue() != null ? dataSnapshot.child(user.getUid()).child("celular").getValue().toString() : "";
+                String fechaNacimientoDB = dataSnapshot.child(user.getUid()).child("fechaNacimiento").getValue() != null ? dataSnapshot.child(user.getUid()).child("fechaNacimiento").getValue().toString() : "";
+                String imagenPerfilDB = dataSnapshot.child(user.getUid()).child("imagenPerfil").getValue() != null ? dataSnapshot.child(user.getUid()).child("imagenPerfil").getValue().toString() : null;
+                nombre.setText(nombreDB);
+                apellido.setText(apellidoDB);
+                apodo.setText(apodoDB);
+                celular.setText(celularDB);
+                etPlannedDate.setText(fechaNacimientoDB);
+
+                if (imagenPerfilDB != null) {
+                    StorageReference imageRef = mStorageRef.child(imagenPerfilDB);
+                    File localFile = null;
+                    try {
+                        localFile = File.createTempFile("images", "jpg");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    final File finalLocalFile = localFile;
+                    imageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Picasso.get().load(finalLocalFile).into(imagenPerfil);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -82,6 +152,17 @@ public class PerfilActivity extends AppCompatActivity {
             }
         });
 
+        etPlannedDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.etPlannedDate:
+                        showDatePickerDialog();
+                        break;
+                }
+            }
+        });
+
     }
 
     private void openFileChooser(){
@@ -89,6 +170,18 @@ public class PerfilActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,PICK_IMAGE_REQUEST);
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                etPlannedDate.setText(selectedDate);
+            }
+        });
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
     @Override
@@ -110,8 +203,8 @@ public class PerfilActivity extends AppCompatActivity {
 
     private void uploadFile(){
         if (pathImagenPerfil != null){
-            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-                    + "." + getFileExtension(pathImagenPerfil));
+            final String imagenFileName = user.getUid() + "." + getFileExtension(pathImagenPerfil);
+            StorageReference fileReference = mStorageRef.child(imagenFileName);
             fileReference.putFile(pathImagenPerfil)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -125,10 +218,19 @@ public class PerfilActivity extends AppCompatActivity {
                             }, 5000);
 
                             Toast.makeText(PerfilActivity.this,"Upload succesful",Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload(pathImagen.getText().toString().trim(),
+                            Upload upload = new Upload(user.getUid(),
                                     taskSnapshot.getStorage().getDownloadUrl().toString());
-                            String uploadId = databaseRef.push().getKey();
-                            databaseRef.child(uploadId).setValue(upload);
+//                            String uploadId = databaseRef.push().getKey();
+                            Jugador jugador = new Jugador(
+                                    user.getUid(),nombre.getText().toString(),
+                                    apellido.getText().toString(),
+                                    apodo.getText().toString(),
+                                    etPlannedDate.getText().toString(),
+                                    celular.getText().toString());
+                            jugador.setImagenPerfil(imagenFileName);
+                            databaseRef.child(jugador.getId()).setValue(jugador);
+                            startActivity(new Intent(PerfilActivity.this,MainActivity.class));
+                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

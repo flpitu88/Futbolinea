@@ -1,18 +1,32 @@
 package com.flpitu88.futbolinea.model;
 
+import com.flpitu88.futbolinea.Upload;
+
 public class Jugador {
 
-    private Integer id;
+    private String id;
     private String nombre;
     private String apellido;
     private String apodo;
+    private String celular;
+    private String fechaNacimiento;
+    private String imagenPerfil;
     private Estadisticas estadisticas;
 
-    public Integer getId() {
+    public Jugador(String id, String nombre, String apellido, String apodo, String fechaNacimiento, String celular) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.apodo = apodo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.celular = celular;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -46,5 +60,29 @@ public class Jugador {
 
     public void setEstadisticas(Estadisticas estadisticas) {
         this.estadisticas = estadisticas;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getImagenPerfil() {
+        return imagenPerfil;
+    }
+
+    public void setImagenPerfil(String imagenPerfil) {
+        this.imagenPerfil = imagenPerfil;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
     }
 }

@@ -39,7 +39,12 @@
     <string name="main_button_newMatch">Crear Partido</string>
     <string name="main_buttons_logout">Cerrar Sesión</string>
     <string name="perfil_titulo">USUARIO</string>
-    <string name="perfil_botonElegirFoto">Cargar</string>
+    <string name="perfil_guardar">Guardar</string>
     <string name="perfil_elegirArchivo">Elija archivo</string>
     <string name="perfil_elegirFoto">Seleccionar</string>
+    <string name="perfil_fechanac">Fecha de Nacimiento</string>
+    <string name="perfil_nombre">Nombre</string>
+    <string name="perfil_apellido">Apellido</string>
+    <string name="perfil_apodo">Apodo</string>
+    <string name="perfil_celular">Celular</string>
 </resources>
