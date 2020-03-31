@@ -32,7 +32,7 @@ public class LoginViewModel extends ViewModel {
 
     public void login(FirebaseUser user, Boolean success) {
         if (success) {
-            loginResult.setValue(new LoginResult(new LoggedInUserView(user.getDisplayName())));
+            loginResult.setValue(new LoginResult(new LoggedInUserView(user.getEmail())));
         } else {
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }

@@ -16,7 +16,7 @@
     <string name="title_activity_registration">Registro</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Contraseña</string>
-    <string name="action_sign_in">Registrar</string>
+    <string name="action_sign_in">Registro</string>
     <string name="action_sign_in_short">Registrarse</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -35,7 +35,11 @@
     <string name="emailpassword_status_fmt">Usuario logueado</string>
     <string name="firebase_status_fmt">Encontrado en Firebase</string>
     <string name="title_activity_signin">Sign in</string>
-    <string name="main_button_groups">Grupos</string>
+    <string name="main_button_profile">Perfil</string>
     <string name="main_button_newMatch">Crear Partido</string>
     <string name="main_buttons_logout">Cerrar Sesión</string>
+    <string name="perfil_titulo">USUARIO</string>
+    <string name="perfil_botonElegirFoto">Cargar</string>
+    <string name="perfil_elegirArchivo">Elija archivo</string>
+    <string name="perfil_elegirFoto">Seleccionar</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.flpitu88.futbolinea.ui.home;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.flpitu88.futbolinea.MainActivity;
+import com.flpitu88.futbolinea.PerfilActivity;
 import com.flpitu88.futbolinea.R;
+import com.flpitu88.futbolinea.ui.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeFragment extends Fragment {
@@ -27,11 +32,22 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         Button logoutButton = root.findViewById(R.id.botonSalir);
+        Button perfilButton = root.findViewById(R.id.botonPerfil);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
+            }
+        });
+
+        perfilButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), PerfilActivity.class));
+                getActivity().finish();
             }
         });
 
