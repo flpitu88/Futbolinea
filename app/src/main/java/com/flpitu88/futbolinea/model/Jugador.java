@@ -1,6 +1,7 @@
 package com.flpitu88.futbolinea.model;
 
-import com.flpitu88.futbolinea.Upload;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador {
 
@@ -11,6 +12,7 @@ public class Jugador {
     private String celular;
     private String fechaNacimiento;
     private String imagenPerfil;
+    private List<String> grupos;
     private Estadisticas estadisticas;
 
     public Jugador(String id, String nombre, String apellido, String apodo, String fechaNacimiento, String celular) {
@@ -20,6 +22,9 @@ public class Jugador {
         this.apodo = apodo;
         this.fechaNacimiento = fechaNacimiento;
         this.celular = celular;
+        this.grupos = new ArrayList<>();
+        grupos.add("Generacion Dorada");
+        grupos.add("Parque");
     }
 
     public String getId() {
@@ -84,5 +89,13 @@ public class Jugador {
 
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public List<String> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<String> grupos) {
+        this.grupos = grupos;
     }
 }

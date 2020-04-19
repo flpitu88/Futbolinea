@@ -7,27 +7,6 @@
     tools:context=".ui.home.HomeFragment">
 
     <Button
-        android:id="@+id/botonPerfil"
-        android:layout_width="161dp"
-        android:layout_height="104dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="70dp"
-        android:backgroundTint="@android:color/secondary_text_dark_nodisable"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/main_button_profile" />
-
-    <Button
-        android:id="@+id/botonCrearPartido"
-        android:layout_width="154dp"
-        android:layout_height="102dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/main_button_newMatch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/botonSalir"
         android:layout_width="320dp"
         android:layout_height="48dp"
@@ -37,4 +16,50 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagenGrupo"
+        android:layout_width="151dp"
+        android:layout_height="144dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/twotone_group_24"
+        android:transitionName="transitionGrupos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imagenPerfil"
+        android:layout_width="151dp"
+        android:layout_height="144dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/twotone_person_24"
+        android:transitionName="transitionPerfil"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="59dp"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_grupos"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imagenGrupo"
+        app:layout_constraintEnd_toEndOf="@+id/imagenGrupo"
+        app:layout_constraintStart_toStartOf="@+id/imagenGrupo" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="59dp"
+        android:layout_height="wrap_content"
+        android:text="@string/main_button_profile"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_secondary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imagenPerfil"
+        app:layout_constraintEnd_toEndOf="@+id/imagenPerfil"
+        app:layout_constraintStart_toStartOf="@+id/imagenPerfil" />
 </androidx.constraintlayout.widget.ConstraintLayout>

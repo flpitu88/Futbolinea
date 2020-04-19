@@ -35,8 +35,8 @@
     <string name="emailpassword_status_fmt">Usuario logueado</string>
     <string name="firebase_status_fmt">Encontrado en Firebase</string>
     <string name="title_activity_signin">Sign in</string>
-    <string name="main_button_profile">Perfil</string>
-    <string name="main_button_newMatch">Crear Partido</string>
+    <string name="main_button_profile">PERFIL</string>
+    <string name="main_button_grupos">GRUPOS</string>
     <string name="main_buttons_logout">Cerrar Sesión</string>
     <string name="perfil_titulo">USUARIO</string>
     <string name="perfil_guardar">Guardar</string>
@@ -47,4 +47,13 @@
     <string name="perfil_apellido">Apellido</string>
     <string name="perfil_apodo">Apodo</string>
     <string name="perfil_celular">Celular</string>
+    <string name="grupos_titulo">GRUPOS</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

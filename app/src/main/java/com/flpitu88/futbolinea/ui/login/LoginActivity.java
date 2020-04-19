@@ -26,7 +26,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.flpitu88.futbolinea.MainActivity;
+import com.flpitu88.futbolinea.ui.MainActivity;
 import com.flpitu88.futbolinea.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

@@ -1,4 +1,4 @@
-package com.flpitu88.futbolinea;
+package com.flpitu88.futbolinea.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -21,8 +20,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.flpitu88.futbolinea.R;
 import com.flpitu88.futbolinea.model.Jugador;
 import com.flpitu88.futbolinea.ui.dialog.DatePickerFragment;
+import com.flpitu88.futbolinea.utilities.Upload;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,8 +43,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -229,7 +228,7 @@ public class PerfilActivity extends AppCompatActivity {
                                     celular.getText().toString());
                             jugador.setImagenPerfil(imagenFileName);
                             databaseRef.child(jugador.getId()).setValue(jugador);
-                            startActivity(new Intent(PerfilActivity.this,MainActivity.class));
+                            startActivity(new Intent(PerfilActivity.this, MainActivity.class));
                             finish();
                         }
                     })
